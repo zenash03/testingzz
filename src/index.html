@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +8,915 @@
     <link rel="stylesheet" href="./index.css" />
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/flowbite/dist/flowbite.js"></script>
+    <script src="../node_modules/moment/moment.js"></script>
 </head>
+
 <body class="bg-slate-200">
     <div class="container px-8 m-auto py-16 h-screen">
-        
-        <section class="h-full w-full bg-white border border-gray-200 rounded-lg shadow py-6">
+
+        <div class="h-full w-full bg-white border border-gray-200 rounded-lg shadow py-6">
             <h2 class="mb-3 text-xl font-semibold text-gray-900 text-center">
                 Todo List App
             </h2>
-        </section>
+
+            <div class="flex w-full p-4 h-full">
+
+                <aside class="w-80">
+                    <div class="h-full px-3 py-4 overflow-y">
+                        <ul class="space-y-2 font-medium">
+                            <!-- <li>
+                                <a id=""
+                                    class="flex items-center p-2 text-gray-800 rounded-lg hover:bg-gray-300 group">
+                                    <svg class="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M15.2 6H4a1 1 0 0 0-1 1v10c0 .6.4 1 1 1h11.2c.3 0 .6-.1.7-.3l4.5-5c.3-.4.3-1 0-1.4l-4.5-5a1 1 0 0 0-.7-.3Z" />
+                                    </svg>
+                                    <span class="flex-1 ms-3">Today</span>
+                                </a>
+                            </li> -->
+                            <li>
+                                <a id="defaultTasksButton" name="side-menu"
+                                    class="flex items-center p-2 text-gray-800 rounded-lg hover:bg-gray-100 group cursor-pointer">
+                                    <svg class="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="m4 12 8-8 8 8M6 10.5V19c0 .6.4 1 1 1h3v-3c0-.6.4-1 1-1h2c.6 0 1 .4 1 1v3h3c.6 0 1-.4 1-1v-8.5" />
+                                    </svg>
+                                    <span class="flex-1 ms-3">Tasks</span>
+                                    <span
+                                        class="inline-flex items-center justify-center h-3 p-3 ms-3 text-sm font-medium text-blue-700 bg-blue-100 rounded-full"
+                                        id="totalTasks">122</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="favoriteTasksButton" name="side-menu"
+                                    class="flex items-center p-2 text-gray-800 rounded-lg hover:bg-gray-100 group cursor-pointer">
+                                    <svg class="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-width="2"
+                                            d="M11 5.1a1 1 0 0 1 2 0l1.7 4c.1.4.4.6.8.6l4.5.4a1 1 0 0 1 .5 1.7l-3.3 2.8a1 1 0 0 0-.3 1l1 4a1 1 0 0 1-1.5 1.2l-3.9-2.3a1 1 0 0 0-1 0l-4 2.3a1 1 0 0 1-1.4-1.1l1-4.1c.1-.4 0-.8-.3-1l-3.3-2.8a1 1 0 0 1 .5-1.7l4.5-.4c.4 0 .7-.2.8-.6l1.8-4Z" />
+                                    </svg>
+                                    <span class="flex-1 ms-3">Favorite</span>
+                                    <span
+                                    class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-red-700 bg-red-100 rounded-full" id="totalFavorite">
+                                        1
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200">
+                            <li class="hidden">
+                                <a href="#"
+                                    class="flex items-center p-2 text-gray-800 rounded-lg hover:bg-gray-300 group">
+                                    <svg class="w-6 h-6 text-gray-500 duration-75 transition group-hover:text-gray-900"
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                                            d="M9 8h10M9 12h10M9 16h10M5 8h0m0 4h0m0 4h0" />
+                                    </svg>
+                                    <span class="flex-1 ms-3">Tasks</span>
+                                    <span
+                                        class="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full">
+                                        3
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <section class="w-full border-l p-4 flex flex-col">
+                    <h3 class="p-2 text-lg font-bold">Tasks</h3>
+
+                    <!-- FILTER -->
+                    <div class="flex">
+                        <button id="filterButton" data-dropdown-toggle="filterDropdown"
+                            class="text-gray-500 focus:ring-1 border border-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center focus:ring-blue-500 focus:text-gray-600 flex w-32"
+                            data-dropdown-offset-skidding="25" type="button">
+                            <span class="capitalize flex-1 text-left truncate" id="">Category</span>
+                            <span class="inline-flex ms-3">
+                                <svg class="w-2.5 h-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 10 6">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 4 4 4-4" />
+                                </svg>
+                            </span>
+                        </button>
+
+                        <button type="button" id="resetFilter"
+                            class="text-red-500 outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:text-red-600 transition duration-100"
+                            style="display: none;">Reset Filter</button>
+
+                        <div id="filterDropdown" class="z-10 hidden w-44 bg-white rounded-lg shadow">
+                            <ul class="p-3 space-y-1 text-sm text-gray-700" aria-labelledby="dropdownBgHoverButton"
+                                id="categoryFilter">
+                                <li>
+                                    <div class="flex items-center p-2 rounded hover:bg-gray-100">
+                                        <input id="checkbox-item-4" type="checkbox" value=""
+                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-1">
+                                        <label for="checkbox-item-4"
+                                            class="w-full ms-2 text-sm font-medium text-gray-900 rounded">Default
+                                            checkbox</label>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="py-2 border-t">
+                                <div class="text-center block px-2" id="applyFilter">
+                                    <button type="button"
+                                        class="w-full px-3 py-2 text-xs font-medium text-center text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:ring-1 focus:outline-none focus:ring-blue-300">Apply</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TASKS  -->
+
+                    <ul class="my-4 space-y-4 overflow-y-auto py-3 h-full" id="tasks">
+                        <li class="py-3 p-3 bg-slate-100 rounded-md hover:bg-slate-200 group">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-6 w-6 text-gray-400" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                                <div class="flex-1 min-w-0 ms-4">
+                                    <p
+                                        class="text-sm font-medium text-gray-700 truncate group-hover:text-gray-950 group-hover:font-semibold transition duration-75">
+                                        Create Table
+                                    </p>
+                                    <p class="text-xs text-gray-500 truncate">
+                                        Sports
+                                    </p>
+                                </div>
+                                <div>
+                                    <button type="button"
+                                        class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300">
+                                        <svg class="w-4 h-4 text-white me-2" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="m14.3 4.8 2.9 2.9M7 7H4a1 1 0 0 0-1 1v10c0 .6.4 1 1 1h11c.6 0 1-.4 1-1v-4.5m2.4-10a2 2 0 0 1 0 3l-6.8 6.8L8 14l.7-3.6 6.9-6.8a2 2 0 0 1 2.8 0Z" />
+                                        </svg>
+                                        Edit
+                                    </button>
+                                    <button type="button"
+                                        class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300">
+                                        <svg class="w-4 h-4 text-white me-2" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
+                                        </svg>
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <!-- FORM TODO -->
+
+                    <form class="flex flex-col gap-y-4" id="formTodo">
+                        <div class="flex gap-x-3">
+                            <div class="w-full">
+                                <input type="text" name="todo" id="todo"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 inline-flex items-center"
+                                    placeholder="Example : Bake cookies" />
+                            </div>
+                            <div>
+                                <button id="categoryButton" data-dropdown-toggle="categoryDropdown"
+                                    class="text-gray-500 focus:ring-1 border border-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center focus:ring-blue-500 focus:text-gray-600 flex w-32"
+                                    data-dropdown-offset-skidding="25" type="button">
+                                    <span class="capitalize flex-1 text-left truncate" id="categoryName">Category</span>
+                                    <span class="inline-flex ms-3">
+                                        <svg class="w-2.5 h-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m1 1 4 4 4-4" />
+                                        </svg>
+                                    </span>
+                                </button>
+
+                                <!-- Dropdown menu -->
+                                <div id="categoryDropdown"
+                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-lg w-44">
+
+                                    <!-- CATEGORIES -->
+                                    <ul class="p-3 space-y-1 py-2 text-sm text-gray-700"
+                                        aria-labelledby="categoryButton" id="categoryList">
+                                        <li>
+                                            <div class="flex items-center p-2 rounded hover:bg-gray-100">
+                                                <input id="default-radio-6" type="radio" value="home"
+                                                    name="category-radio"
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-1">
+                                                <label for="default-radio-6"
+                                                    class="w-full ms-2 text-sm font-medium text-gray-900 rounded">Home</label>
+                                                <button type="button"
+                                                    class="text-red-500 hover:text-red-700 font-medium rounded-full text-sm text-center inline-flex items-center">
+                                                    <svg class="w-5d h-5 text-red-500" aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24">
+                                                        <path stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="2"
+                                                            d="m15 9-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="py-2">
+                                        <a type="button" data-modal-toggle="modalCategory"
+                                            data-modal-target="modalCategory"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">Add
+                                            New Category</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <button type="submit" id="addEditButton" value="add"
+                                    class="inline-flex items-center px-4 py-2.5 text-sm font-medium text-center text-white bg-blue-500 border border-gray-300 rounded-lg hover:bg-blue-600 focus:ring-1 focus:ring-blue-200">Add</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center px-4 py-3 mb-4 text-sm text-red-600 border border-red-300 rounded-lg bg-red-50"
+                                role="alert" id="errorAlert" style="display: none;">
+                                <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 -1 20 20">
+                                    <path
+                                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                                </svg>
+                                <span class="sr-only">Info</span>
+                                <div>
+                                    <span class="font-medium" id="errorMessage">Danger alert!</span> Required Input
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </section>
+            </div>
+        </div>
 
     </div>
+
+
+    <!-- MODAL  -->
+
+    <div id="modalCategory" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow">
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
+                    <h3 class="text-xl font-semibold text-gray-900">
+                        Add New Category
+                    </h3>
+                    <button type="button" id="x-close-modal"
+                        class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                        data-modal-hide="modalCategory" id="closeModalCategory">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <div class="p-4 md:p-5">
+                    <form class="space-y-4" id="formNewCategory">
+                        <div>
+                            <label for="new-category-input"
+                                class="block mb-2 text-sm font-medium text-gray-900">Category
+                                Name</label>
+                            <input type="text" name="new-category-input" id="new-category-input"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                placeholder="ex: Productivity" required>
+                        </div>
+                        <button type="submit"
+                            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="hidden" id="openPopup" data-modal-toggle="popup-modal" data-modal-target="popup-modal"></button>
+    <div id="popup-modal" tabindex="-1"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow">
+                <button type="button"
+                    class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                    data-modal-hide="popup-modal" id="closePopup">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="p-4 md:p-5 text-center">
+                    <svg class="mx-auto mb-4 text-gray-400 w-12 h-12" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <h3 class="mb-5 text-lg font-normal text-gray-500">Are you sure you want to delete this Tasks?</h3>
+                    <button type="button"
+                        class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center me-2"
+                        id="acceptDeleteButton">
+                        Yes, I'm sure
+                    </button>
+                    <button data-modal-hide="popup-modal" type="button"
+                        class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10"
+                        id="cancelDelete">No, cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
+<script type="module">
+    function Task({ taskID = 0, taskName, categoryName, status = false, favorite = false, dateTime = $.now() }) {
+        this.taskID = taskID,
+            this.taskName = taskName,
+            this.categoryName = categoryName,
+            this.status = status,
+            this.dateTime = dateTime,
+            this.favorite = favorite,
+
+            this.toStr = function () {
+                const obj = {
+                    'taskID': this.taskID,
+                    'taskName': `${this.taskName}`,
+                    'categoryName': `${this.categoryName}`,
+                    'status': this.status,
+                    'favorite': this.favorite,
+                    'dateTime': this.dateTime
+                }
+                return JSON.stringify(obj);
+            }
+    }
+    function Filter({ categoryFilter = null, isFavorite = null }) {
+        this.categoryFilter = categoryFilter
+        this.isFavorite = isFavorite
+    }
+
+    let category = {
+        list: [],
+
+        addCategory: function (...category) {
+            this.list.push(...category);
+        },
+        deleteCategory: function (category) {
+            this.getCategory.forEach((element, index) => {
+                if (element == category) {
+                    this.list.splice(index, 1);
+                }
+            })
+        },
+        get getCategory() {
+            return this.list;
+        },
+        getElementCategoryList: function (data) {
+            const lists = data.map((category, index) => {
+
+                return (
+                    `<li>
+                        <div class="flex items-center p-2 rounded hover:bg-gray-100 group">
+                            <input id="default-radio-${index}" type="radio" value='${category}'
+                                name="category-radio"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-1">
+                            <label for="default-radio-${index}"
+                                class="w-full capitalize ms-2 text-sm font-medium text-gray-900 rounded truncate">${category}</label>
+                            <button type="button"
+                                class="hidden group-hover:block text-red-200 hover:text-red-700 font-medium rounded-full text-sm text-center inline-flex items-center" data-button='${category}' name="deleteCategoryButton">
+                                <svg class="w-5d h-5 text-red-400 hover:text-red-600 transition duration-75"
+                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2"
+                                        d="m15 9-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </li>`
+                )
+            })
+            return lists;
+        },
+        getElementCategoryFilter: function (data) {
+            const lists = data.map((category, index) => {
+                return (
+                    `<li>
+                        <div class="flex items-center p-2 rounded hover:bg-gray-100">
+                            <input id="checkbox-item-${index}" name="category-filter-checkbox" type="checkbox" value='${category}' class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-1">
+                            <label for="checkbox-item-${index}" class="w-full ms-2 text-sm font-medium text-gray-900 rounded capitalize truncate">${category}</label>
+                        </div>
+                    </li>`
+                )
+            })
+            return lists;
+        },
+        showCategory: function () {
+            $('#categoryList').html(this.getElementCategoryList(this.getCategory));
+            $('#categoryFilter').html(this.getElementCategoryFilter(this.getCategory));
+        }
+    }
+    let todo = {
+        list: [],
+
+        addTask: function (...task) {
+            let lastId = this.list.length;
+            task.forEach(element => {
+                element.taskID = ++lastId;
+            });
+            this.getList.push(...task)
+        },
+        deleteTask: function (task) {
+            this.getList.forEach((element, index) => {
+                // if (element.taskName == task.taskName && element.categoryName == task.categoryName) {
+                //     console.log("found")
+                //     this.getList.splice(index, 1)
+                // }
+                if (element.taskID === task.taskID) {
+                    this.getList.splice(index, 1)
+                }
+            })
+        },
+        editTask: function (task) {
+            this.getList.forEach((element, index) => {
+                // if (element.taskName == task.taskName && element.categoryName == task.categoryName) {
+                //     this.getList[index] = newTask
+                // }
+                if (element.taskID === task.taskID) {
+                    element.taskName = task.taskName;
+                    element.categoryName = task.categoryName;
+                    element.status = task.status;
+                    element.favorite = task.favorite;
+                }
+            })
+        },
+        updateStatus: function (task) {
+            this.getList.forEach((element, index) => {
+
+            })
+        },
+
+        get getList() {
+            return this.list;
+        },
+
+        getElement: function (data) {
+            if (data.length < 1) {
+                return (`
+                <div class="flex items-center p-4 text-sm text-yellow-400 rounded-lg bg-yellow-50 border-yellow-300 border" role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                    </svg>
+                    <span class="sr-only">Info</span>
+                    <div>
+                        <span class="font-medium">No Data View!</span>
+                    </div>
+                </div>`);
+            }
+            const lists = data.map((task, index) => {
+                const data = task.toStr();
+                const lineThrough = task.status ? 'line-through' : '';
+                let taskIcon = `<svg class="h-6 w-6 text-gray-400 transition duration-300 ease-in-out" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    name="task-icon" data-task='${data}'>
+                                    <path
+                                        d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>`;
+                if (task.status) {
+                    taskIcon = `<svg class="w-6 h-6 text-blue-600 transition duration-300 ease-in-out" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 -1 20 22" name="task-icon" data-task='${data}'>
+                                    <path
+                                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                </svg>`;
+                }
+                let favoriteIcon = `<svg class="w-5 h-5 text-gray-400" 
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" name="favorite-task" data-task='${data}'>
+                                        <path stroke="currentColor" stroke-width="1.75" d="M11 5.1a1 1 0 0 1 2 0l1.7 4c.1.4.4.6.8.6l4.5.4a1 1 0 0 1 .5 1.7l-3.3 2.8a1 1 0 0 0-.3 1l1 4a1 1 0 0 1-1.5 1.2l-3.9-2.3a1 1 0 0 0-1 0l-4 2.3a1 1 0 0 1-1.4-1.1l1-4.1c.1-.4 0-.8-.3-1l-3.3-2.8a1 1 0 0 1 .5-1.7l4.5-.4c.4 0 .7-.2.8-.6l1.8-4Z"/>
+                                    </svg>`;
+                if (task.favorite) {
+                    favoriteIcon = `<svg class="w-5 h-5 text-amber-400" 
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" name="favorite-task" data-task='${data}'>
+                                        <path stroke="currentColor" stroke-width="1.75" d="M11 5.1a1 1 0 0 1 2 0l1.7 4c.1.4.4.6.8.6l4.5.4a1 1 0 0 1 .5 1.7l-3.3 2.8a1 1 0 0 0-.3 1l1 4a1 1 0 0 1-1.5 1.2l-3.9-2.3a1 1 0 0 0-1 0l-4 2.3a1 1 0 0 1-1.4-1.1l1-4.1c.1-.4 0-.8-.3-1l-3.3-2.8a1 1 0 0 1 .5-1.7l4.5-.4c.4 0 .7-.2.8-.6l1.8-4Z"/>
+                                    </svg>`;
+                }
+                return (
+                    `<li class="py-3 p-3 bg-slate-100 rounded-md hover:bg-slate-200 group">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                ${taskIcon}
+                            </div>
+                            <div class="flex-1 min-w-0 ms-4">
+                                <p
+                                    class="text-sm font-medium text-gray-700 truncate group-hover:text-gray-950 group-hover:font-semibold transition duration-75 capitalize ${lineThrough}">
+                                    ${task.taskName} 
+                                </p>
+                                <p class="text-xs text-gray-500 capitalize truncate flex">
+                                    <span class="font-medium basis-1/6">${task.categoryName}</span>
+                                    <span class="mx-4"> | </span>
+                                    <span class="text-gray-400 basis-full">${moment(task.dateTime).format('MMM D YYYY hh:mm')}</span>
+                                </p>
+                            </div>
+                            <div class="flex gap-x-2">
+                                <div class="px-2 py-2">
+                                    ${favoriteIcon}
+                                </div>
+                                <button type="button" 
+                                    data-button='${data}'
+                                    name="editTaskButton"
+                                    class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300">
+                                    <svg class="w-4 h-4 text-white me-2" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="m14.3 4.8 2.9 2.9M7 7H4a1 1 0 0 0-1 1v10c0 .6.4 1 1 1h11c.6 0 1-.4 1-1v-4.5m2.4-10a2 2 0 0 1 0 3l-6.8 6.8L8 14l.7-3.6 6.9-6.8a2 2 0 0 1 2.8 0Z" />
+                                    </svg>
+                                    Edit
+                                </button>
+                                <button type="button" data-button='${data}'
+                                    name="deleteTaskButton"
+                                    class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300">
+                                    <svg class="w-4 h-4 text-white me-2" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
+                                    </svg>
+                                    Delete
+                                </button>
+                            </div>
+                                <!-- <span
+                                class="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-green-600 bg-green-300 rounded">
+                                Done
+                            </span> -->
+                        </div>
+                    </li>`
+                )
+            })
+            return lists;
+        },
+        showTodo: function ({ sortBy = 'default', filter = new Filter({}) }) {
+            let showData = this.sortBy(sortBy);
+            if (localStorage.getItem('menu') === "favorite") {
+                filter.isFavorite = true;
+            } else {
+                filter.isFavorite = false;
+            }
+            showData = this.filterBy(showData, filter);
+            $('#tasks').html(this.getElement(showData));
+
+            const data = this.list;
+            const totalTasks = $('#totalTasks');
+            if (data.length == 0) totalTasks.hide();
+            else totalTasks.show();
+
+            if (data.length < 10) {
+                totalTasks.addClass('w-3');
+            }
+            totalTasks.text(data.length)
+            let totalFavoriteData = data.filter((value) => {
+                return value.favorite == true
+            }).length;
+            const totalFavorite = $('#totalFavorite');
+            if(totalFavoriteData == 0) totalFavorite.hide();
+            else totalFavorite.show();
+
+            if(totalFavoriteData < 10) {
+                totalFavorite.addClass('w-3');
+            }
+            totalFavorite.text(totalFavoriteData)
+
+            // totalFavoriteData = data.map(function () {this.favorite === true})
+            // console.log(totalFavoriteData)
+        },
+        sortBy: function (sortBy = 'default') {
+            let data = this.list.sort(function (a, b) {
+                return b.taskID - a.taskID;
+            })
+            data = data.sort(function (a, b) {
+                return b.dateTime - a.dateTime;
+            });
+
+            if (sortBy == 'default') {
+                data = data.sort(function (a, b) {
+                    return a.status - b.status;
+                });
+            } else if (sortBy == 'statusDone') {
+                data = data.sort(function (a, b) {
+                    return b.status - a.status;
+                })
+            } else if (sortBy == 'statusNotDone') {
+                data = data.sort(function (a, b) {
+                    return a.status - b.status;
+                })
+            }
+
+            return data;
+        },
+        filterBy: function (data, filter) {
+            let filteredData = data;
+            const categoryFilter = filter.categoryFilter ? filter.categoryFilter : null;
+            // console.log(categoryFilter)
+            if (categoryFilter != null && categoryFilter.length > 0) {
+                filteredData = filteredData.filter(function (value) {
+                    return categoryFilter.includes(value.categoryName);
+                })
+            }
+            if (filter.isFavorite && filter.isFavorite != null) {
+                filteredData = filteredData.filter(function (value) {
+                    return value.favorite === true
+                })
+            }
+            return filteredData;
+        }
+    };
+
+    $(document).ready(function () {
+        const categoryDropdownButton = $('#categoryButton');
+        const categoryButtonName = $('#categoryButton span[id="categoryName"]');
+        const categoryDropdown = $('#categoryDropdown');
+
+        const errorAlert = $('#errorAlert');
+        const errorMessage = $('#errorMessage');
+
+        const modalToggleButton = $('[data-modal-toggle="modalCategory"]')
+        $(document).on('change', 'input[name*="category-radio"]', function (event) {
+
+            const categoryName = event.target.value;
+            categoryButtonName.text(categoryName);
+            categoryDropdownButton.trigger('click')
+        })
+        const todoInput = $('#todo');
+        const categoryRadio = $('input[name*="category-radio"]');
+        const editTaskButton = $('button[name*="editTaskButton"]');
+
+        let selectedTask = null;
+
+        $(document).on('submit', '#formTodo', function (e) {
+            try {
+                e.preventDefault()
+                const checked = $('input[name*="category-radio"]').filter(':checked').val();
+                console.log(checked)
+
+                if (todoInput.val() == null || todoInput.val() === "") {
+                    throw new TypeError("Must Input Todo!!");
+                }
+                else if (checked == "category" || checked == null) {
+                    throw new TypeError("Must Select Category!!");
+                }
+                const buttonType = $('#addEditButton').val();
+                const newTask = new Task(
+                    {
+                        taskName: todoInput.val(),
+                        categoryName: checked,
+                        favorite: (localStorage.getItem('menu') === 'favorite')
+                    });
+                if (buttonType === "add") {
+                    todo.addTask(newTask)
+                }
+                else {
+                    let selectedTask = $.parseJSON($('#addEditButton').attr('data-button'));
+                    selectedTask.taskName = todoInput.val();
+                    selectedTask.categoryName = checked;
+                    todo.editTask(selectedTask);
+                    // todo.editTask(selectedTask, newTask);
+                    $('#addEditButton').removeAttr('data-button');
+                    $('#addEditButton').text("Add").val("add");
+                }
+
+                todo.showTodo({ sortBy: 'statusNotDone' });
+                clearForm();
+            } catch (error) {
+                showErrorMessage(error.message);
+            }
+        })
+
+        $(document).on('input', '#formTodo input', function () {
+            const checked = $('input[name*="category-radio"]').filter(':checked').val();
+            if (todoInput.val() != null && todoInput.val() !== "") {
+                closeErrorMessage();
+            }
+            else if (checked != null) {
+                closeErrorMessage();
+            }
+        })
+
+        $('#formNewCategory').on('submit', function (e) {
+            e.preventDefault();
+
+            const newCategory = $('#new-category-input');
+            category.addCategory(newCategory.val());
+            console.log(category)
+            category.showCategory();
+            $('#x-close-modal').trigger('click');
+            categoryButtonName.text(newCategory.val());
+            $('input[name*="category-radio"]').filter(function () {
+                return $(this).attr('value') == newCategory.val();
+            }).prop('checked', true);
+            newCategory.val("")
+        })
+
+        // dynamic
+        $(document).on('click', 'button[name*="editTaskButton"]', function (event) {
+            const task = $.parseJSON($(this).attr('data-button'));
+
+            todoInput.val(task.taskName)
+
+            const categoryName = task.categoryName;
+            $('input[name="category-radio"][value="' + categoryName + '"]').prop('checked', true);
+            categoryButtonName.text(categoryName)
+            $('#addEditButton').text("Edit").val("edit");
+            $('#addEditButton').attr('data-button', $(this).attr('data-button'));
+        })
+
+        $(document).on('click', 'button[name*="deleteTaskButton"]', async function (event) {
+            const task = $.parseJSON($(this).attr('data-button'));
+            $('#openPopup').trigger('click');
+            const confirmation = await deleteConfirmation(task)
+            if (confirmation) {
+                $('#closePopup').trigger('click');
+                todo.deleteTask(task);
+                todo.showTodo({});
+                clearForm();
+            }
+        })
+
+        $(document).on('click', 'button[name*="deleteCategoryButton"]', function (event) {
+            const selectedCategory = $(this).attr('data-button');
+            console.log(selectedCategory)
+            category.deleteCategory(selectedCategory);
+            category.showCategory()
+        })
+
+        $(document).on({
+            mouseenter: function () {
+                const task = $.parseJSON($(this).attr('data-task'));
+                if (!task.status) {
+                    const component = `<svg class="w-6 h-6 text-gray-400" 
+                                        aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 -1 20 22"
+                                        data-task='${$(this).attr('data-task')}'>
+                                        <path
+                                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                                        </svg>`;
+                    $(this).html(component);
+                }
+            },
+            mouseleave: function () {
+                const task = $.parseJSON($(this).attr('data-task'));
+                if (!task.status) {
+                    const component = `<svg class="h-6 w-6 text-gray-400" 
+                                        viewBox="0 0 24 24" fill="none" 
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        </svg>`;
+                    $(this).html(component)
+                }
+            },
+            click: function () {
+                let task = $.parseJSON($(this).attr('data-task'));
+                task.status = !task.status;
+                todo.editTask(task);
+                // $('#applyFilter').trigger('click');
+                applyFilter();
+            }
+        }, 'svg[name*="task-icon"]');
+
+        $(document).on({
+            mouseenter: function () {
+                const task = $.parseJSON($(this).attr('data-task'));
+                if (!task.favorite) {
+                    const component = `<svg class="w-4 h-4 text-slate-400" 
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" 
+                                        fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z"/>
+                                        </svg>`;
+                    $(this).html(component);
+                }
+            },
+            mouseleave: function () {
+                const task = $.parseJSON($(this).attr('data-task'));
+                if (!task.favorite) {
+                    const component = `<svg class="w-6 h-6 text-gray-400" 
+                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" name="favorite-task">
+                                            <path stroke="currentColor" stroke-width="1.75" d="M11 5.1a1 1 0 0 1 2 0l1.7 4c.1.4.4.6.8.6l4.5.4a1 1 0 0 1 .5 1.7l-3.3 2.8a1 1 0 0 0-.3 1l1 4a1 1 0 0 1-1.5 1.2l-3.9-2.3a1 1 0 0 0-1 0l-4 2.3a1 1 0 0 1-1.4-1.1l1-4.1c.1-.4 0-.8-.3-1l-3.3-2.8a1 1 0 0 1 .5-1.7l4.5-.4c.4 0 .7-.2.8-.6l1.8-4Z"/>
+                                        </svg>`;
+                    $(this).html(component);
+                }
+            },
+            click: function () {
+                const task = $.parseJSON($(this).attr('data-task'));
+                task.favorite = !task.favorite;
+                todo.editTask(task);
+                applyFilter();
+            }
+
+        }, 'svg[name*="favorite-task"]')
+
+        $(document).on('click', '#applyFilter', function () {
+            applyFilter();
+            $('#filterButton').trigger('click')
+        })
+
+        $(document).on('click', '#favoriteTasksButton', function () {
+            localStorage.setItem("menu", "favorite");
+            todo.showTodo({ filter: new Filter({ isFavorite: true }) })
+            $.setActiveMenu($(this).attr('id'));
+            $('#resetFilter').trigger('click');
+        })
+        $(document).on('click', '#defaultTasksButton', function () {
+            localStorage.setItem("menu", "tasks");
+            todo.showTodo({})
+            $.setActiveMenu($(this).attr('id'));
+            $('#resetFilter').trigger('click');
+        })
+
+        $(document).on('click', '#resetFilter', function () {
+            const checkedFilter = $('input[name*="category-filter-checkbox"]');
+            checkedFilter.filter(':checked').prop('checked', false);
+            $('#resetFilter').hide()
+            todo.showTodo({})
+        })
+
+        $.setActiveMenu = function (id = 'defaultTasksButton') {
+            $('a[name="side-menu"]').map(function () {
+                $(this).removeClass('bg-gray-100')
+            })
+            $(`#${id}`).addClass('bg-gray-100')
+        }
+
+        function applyFilter() {
+            const checkedFilter = $('input[name*="category-filter-checkbox"]:checked').map(function () {
+                return this.value
+            }).get();
+            if (checkedFilter.length > 0)
+                $("#resetFilter").show()
+            else
+                $('#resetFilter').hide()
+            todo.showTodo({ filter: new Filter({ categoryFilter: checkedFilter }) })
+        }
+
+        function deleteConfirmation(task) {
+
+            return new Promise(function (resolve) {
+                let listener = function (event) {
+                    resolve(true)
+                }
+                $('#acceptDeleteButton').on('click', listener);
+            })
+        }
+
+        let showErrorMessage = (message) => {
+            errorAlert.show();
+            errorMessage.text(message);
+        }
+
+        let closeErrorMessage = () => {
+            errorAlert.hide();
+        }
+
+        let clearForm = () => {
+            todoInput.val("");
+            const categoryRadio = $('input[name*="category-radio"]');
+            categoryRadio.filter(':checked').prop('checked', false);
+            categoryButtonName.text("Category")
+        }
+
+        localStorage.setItem("menu", "tasks")
+        $.setActiveMenu()
+
+        const new1 = new Task({ taskName: "Do English homework", categoryName: "school", status: true });
+        const new2 = new Task({ taskName: "Cleaning Computer Screen", categoryName: "home", status: false, dateTime: Date.parse("2024-02-24 01:22:21") });
+        const new3 = new Task({ taskName: "Learn Node JS", categoryName: "study", status: true, dateTime: Date.parse("2024-02-27 07:02:45"), favorite: true });
+        const new4 = new Task({ taskName: "Learn Laravel Framework", categoryName: "study", status: false, favorite: true, dateTime: Date.parse("2024-02-28 10:12:40") });
+
+        console.log(new3)
+        todo.addTask(new1, new2, new3, new4);
+        category.addCategory("study", "school", "home", "work");
+        category.showCategory();
+        todo.showTodo({ sortBy: 'statusNotDone' });
+    })
+
+</script>
+
 </html>

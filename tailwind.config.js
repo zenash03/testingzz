@@ -10,7 +10,8 @@ module.exports = {
   plugins: [
     require('tailwindcss'),
     require('flowbite/plugin'),
-    require('jquery/bower.json')
+    require('jquery/bower.json'),
+    require('moment')
   ],
 }
 

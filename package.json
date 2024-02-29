@@ -52,6 +52,8 @@
     "micromatch": "^4.0.5",
     "minimatch": "^9.0.3",
     "minipass": "^7.0.4",
+    "moment": "^2.30.1",
+    "moment-timezone": "^0.5.45",
     "mz": "^2.7.0",
     "nanoid": "^3.3.7",
     "normalize-path": "^3.0.0",
